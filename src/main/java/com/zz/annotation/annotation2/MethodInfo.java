@@ -1,4 +1,4 @@
-package com.zz.annotation;
+package com.zz.annotation.annotation2;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

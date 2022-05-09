@@ -1,4 +1,4 @@
-package com.zz.annotation1;
+package com.zz.annotation.annotation1;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

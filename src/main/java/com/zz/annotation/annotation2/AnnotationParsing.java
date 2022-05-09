@@ -1,4 +1,4 @@
-package com.zz.annotation;
+package com.zz.annotation.annotation2;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
@@ -9,12 +9,12 @@ public class AnnotationParsing {
 			
 			for(Method method:(AnnotationParsing.class
 					.getClassLoader().
-					loadClass("com.zz.annotation.AnnotationExample").
+					loadClass("com.zz.annotation.annotation2.AnnotationExample").
 					getMethods())){
 				System.out.println(method.getName());
 
 				//方法是否存在这个注解
-				if(method.isAnnotationPresent(com.zz.annotation.MethodInfo.class)){
+				if(method.isAnnotationPresent(MethodInfo.class)){
 					try{
 						//通过反射看看都有哪些注解
 						for(Annotation anno: method.getDeclaredAnnotations()){
