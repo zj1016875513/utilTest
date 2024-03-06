@@ -16,7 +16,7 @@ public class easyExcel_T1 {
     @Test
     public void test() throws IOException {
         // 文件输出位置
-        String path = "D:/IDEAworkspace/utilTest/src/main/java/com/zz/excel/excel_test_data/test.xlsx";
+        String path = "D:/CodeProject/JavaProject/myProject/utilTest/src/main/java/com/zz/excel/excel_test_data/test.xlsx";
         OutputStream out = new FileOutputStream(path);
         ExcelWriter writer = EasyExcelFactory.write(out).build();
 

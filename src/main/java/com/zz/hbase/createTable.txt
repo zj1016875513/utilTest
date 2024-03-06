@@ -1,0 +1,25 @@
+
+#创建分区
+shard_num=4096
+
+for((i=0;i<${shard_num};i=i+1))
+do
+line=$(echo $i|awk '{printf("%03x",$0)}')
+echo ${line}
+done
+
+#建表语句
+create 'hbase_table' {NAME=>'CF1'},{SPLITS_FILE=>'big_4096.txt'}
+
+#bulk load 命令
+hbase --config $hbase_home/hbase/conf org.apache.hadoop.hbase.mapreduce.LoadIncrementalHFiles
+-Dyarn.app.mapreduce.am.containerlauncher.threadpool-initial-size=50\
+-Dyarn app.mapreduce.am.resource.mb=20480\
+-Dyarn app.mapreduce.am.resource.cpu-vcores=20\
+-Dhbase.loadincremental.threads.max=200\
+-Dmapreduce.map.memory.mb=6096 \
+-Dmapreduce.reduce.memory.mb=6096 \
+-Dmapreduce.job.queuename=${queue} \
+-Dhdfs.client.use.datanode.hostname=true \
+-Dhbase.mapreduce.bulkload.max.hfiles.perRegion.perFamily=1024000 $hfile_path $ table_name > ${cur_path}/bulkload_logs/bulk_load.log 2> &1 &
+
